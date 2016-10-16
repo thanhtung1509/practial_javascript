@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Hoisting declaration. </h1>
+    
+<!--<script>
+"use strict";
+var myvar = "global";
+function f() {
+    console.log(myvar); // (*)
+    if (true) {
+        var myvar = "local"; // (**)
+    }
+    console.log(myvar);
+    
+}
+</script>
+
+</body>
+</html> 
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>let declarations.</h1>
+    
+<script>
+"use strict";
+function f() {
+    console.log(myvar); // (*)
+    if (true) {
+        let myvar = "local"; // (**)
+    }
+    console.log(myvar);
+    
+}
+</script>
+
+</body>
+</html>  -->
+    
+<script>
+    const person = { name : "Adam" };
+    person.name = "Brown";
+    console.log(person.name);
+</script>

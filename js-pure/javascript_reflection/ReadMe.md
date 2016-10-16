@@ -1,0 +1,1 @@
+http://www.htmlgoodies.com/tutorials/web_graphics/object-reflection-in-javascript.html
