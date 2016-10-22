@@ -6,6 +6,9 @@ var sass = require('gulp-ruby-sass');
 var minifycss = require('gulp-minify-css');
 var connect = require('gulp-connect');
 var del = require('del');
+var gulpSequence = require('gulp-sequence');
+
+
 
 //If you want to add or overwrite certain settings in the tsconfig.json file, you can add desire properties to the second parameters.
 var tsProject = ts.createProject('tsconfig.json', { noImplicitAny: true });
@@ -20,14 +23,14 @@ gulp.task('typescripts', function() {
     ]);
 });
 
-gulp.task('connectDev', function () {
+/*gulp.task('connectDev', function () {
   connect.server({
     name: 'Dev App',
     root: ['src'],
     port: 8000,
     livereload: true
   });
-});
+});*/
 
 gulp.task('connectDist', function () {
   connect.server({
@@ -69,3 +72,6 @@ gulp.task('build', ['scss', 'typescripts'], function() {
 })
 
 gulp.task('default', [/*'connectDist',*/ 'connectDist', 'watch']);
+gulp.task('run', function() {
+     gulpSequence('clean',['scss', 'typescripts'], 'html', 'connectDist', 'watch')();
+});
