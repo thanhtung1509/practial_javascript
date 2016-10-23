@@ -8,8 +8,6 @@ var connect = require('gulp-connect');
 var del = require('del');
 var gulpSequence = require('gulp-sequence');
 
-
-
 //If you want to add or overwrite certain settings in the tsconfig.json file, you can add desire properties to the second parameters.
 var tsProject = ts.createProject('tsconfig.json', { noImplicitAny: true });
 
@@ -22,15 +20,6 @@ gulp.task('typescripts', function() {
         tsResult.js.pipe(gulp.dest('dist/js'))
     ]);
 });
-
-/*gulp.task('connectDev', function () {
-  connect.server({
-    name: 'Dev App',
-    root: ['src'],
-    port: 8000,
-    livereload: true
-  });
-});*/
 
 gulp.task('connectDist', function () {
   connect.server({
@@ -57,7 +46,7 @@ gulp.task('scss', function () {
 gulp.task('watch', function () {
   gulp.watch(['./src/*.html'], ['html']);
   gulp.watch(['./src/scss/**/*.scss'], ['scss']);
-  gulp.watch(['./src/ts/**/*.ts'], ['typescripts'])
+  gulp.watch(['./src/ts/**/*.ts'], ['typescripts']);
 });
 
 //Clean dist directory
@@ -65,13 +54,39 @@ gulp.task('clean', function() {
 	return del(['./dist/*']);
 });
 
-//Build app before lauching it.
-gulp.task('build', ['scss', 'typescripts'], function() {
-    gulp.src('./src/*.html')
-    .pipe(gulp.dest('./dist'));
-})
+gulp.task('copy:lib', function() {
+  var libnames = ['slideout.js/dist/', 'lodash/dist'];
+  var prefixUrl = './bower_components/';
+  for (var index in libnames) {
+    var url = prefixUrl + libnames[index] + '/**/*';
+    gulp.src(url)
+    .pipe(gulp.dest('dist/lib'));
+  }
+});
 
-gulp.task('default', [/*'connectDist',*/ 'connectDist', 'watch']);
-gulp.task('run', function() {
-     gulpSequence('clean',['scss', 'typescripts'], 'html', 'connectDist', 'watch')();
+gulp.task('copy:excss', function() {
+var libnames = ['css-hamburgers/dist/'];
+  var prefixUrl = './bower_components/';
+  for (var index in libnames) {
+    var url = prefixUrl + libnames[index] + '/*.min.css';
+    gulp.src(url)
+    .pipe(gulp.dest('dist/css'));
+  }
+});
+
+gulp.task('copy:css', function() {
+  gulp.src('./src/css/*.css')
+    .pipe(gulp.dest('dist/css'));
+});
+
+gulp.task('copy:fonts', function() {
+  gulp.src('./src/fonts/**/*')
+    .pipe(gulp.dest('dist/fonts'));
+});
+
+//build and run app
+gulp.task('default', function() {
+     gulpSequence('clean',
+                  ['scss', 'typescripts', 'copy:lib', 'copy:excss', 'copy:css', 'copy:fonts'], 
+                  'html', 'connectDist', 'watch')();
 });

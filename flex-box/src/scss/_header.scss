@@ -1,0 +1,56 @@
+/**
+ * Header
+ */
+.panel-header {
+    display: flex; 
+    flex-direction: row;
+    background: #48a770;//#d4d4d4;
+}
+
+.title {
+  flex: 1;
+  font-size: 1.5em;
+  line-height: 1em;
+  color: #f4f4f4;
+  text-align: center;
+  font-weight: 600;
+  word-spacing: .08em;
+}
+
+/**
+ * hamburger
+ */
+.hamburger-inner {
+  background-color: #f4f4f4;
+}
+
+.hamburger-inner {
+  &:before {
+    background-color: #f4f4f4;
+  }
+  
+  &:after {
+    background-color: #f4f4f4; 
+  }  
+}
+
+
+/**
+ * Medium Screens
+ */
+@media all and (min-width:40em) {
+
+  .btn-hamburger {
+    // top: 20px;
+    // left: 30px;
+  }
+
+  .panel-header {
+    // margin-top: 40px;
+    // width: 455px;
+  }
+
+  .title {
+    // font-size: 4.2em;
+  }
+}
