@@ -1,3 +1,8 @@
-body {
-    background-color: beige;
-}
+ @import '_header.scss';
+ @import '_footer.scss';
+ @import '_sidebar.scss';
+ @import '_content.scss';
+ /*
+ Start index.scss
+ */
+ @import '_index.scss';

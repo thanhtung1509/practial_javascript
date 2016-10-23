@@ -1,47 +1,103 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-	<meta http-equiv="Content-Security-Policy" />
-	<meta name="format-detection" content="telephone=no">
-	<meta name="msapplication-tap-highlight" content="no">
-	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-	<title>Hello World</title>
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<meta charset="utf-8">
+	<title>Slideout Demo</title>
+	<meta http-equiv="cleartype" content="on">
+	<meta name="MobileOptimized" content="320">
+	<meta name="HandheldFriendly" content="True">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="css/normalize.css" />
+	<link rel="stylesheet" href="css/icons.css" />
+	<link rel="stylesheet" href="css/hamburgers.min.css" />
+  <link rel="stylesheet" href="css/hamburgers.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
 </head>
+
 <body>
-	<div class="app-wrap">
-		<header class="app-header">
-			<a href="#" class="button">
-				<i class="fa fa-bars"></i>
-			</a>
-			<h1>
-				FlexBox App Layout
-			</h1>
-			<a href="#" class="button">
-				<i class="fa fa-cog"></i>
-			</a>
+	<nav id="menu" class="menu">
+		<nav class="st-menu st-effect-1">
+				<h2 class="icon icon-lab">My app</h2>
+				<ul>
+					<li><a class="icon icon-data" href="#">Data Management</a></li>
+					<li><a class="icon icon-location" href="#">Location</a></li>
+					<li><a class="icon icon-truck" href="#">Vehicle</a></li>
+					<li><a class="icon icon-photo" href="#">Collections</a></li>
+					<li><a class="icon icon-wallet" href="#">Credits</a></li>
+				</ul>
+			</nav>
+	</nav>
+
+	<main id="panel" class="panel">
+		<header class="panel-header">
+			<div class="side-menu-toggle hamburger hamburger--spin">
+				<div class="hamburger-box">
+					<div class="hamburger-inner"></div>
+				</div>
+			</div>
+
+			<h2 class="title">Panel</h2>
+      <div style="padding: 15px;">
+        <div style="width:40px; height:24px;"></div>
+      </div>
 		</header>
-		<div class="content">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non repellendus, explicabo earum porro quia, quaerat cupiditate?
-				Fugiat doloremque ex cum ea incidunt distinctio voluptas assumenda. Fugit recusandae deserunt maiores molestias!</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis sapiente, error quae vel ipsa dolor a quasi nihil.
-				Aut recusandae amet non impedit, vitae quia, voluptatum et nihil nemo ad.</p>
-			<p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In distinctio saepe cumque, velit neque ut quasi perspiciatis recusandae adipisci maxime totam rerum corporis quo culpa, unde, sunt sapiente, nisi dolores.</span>
-				<span>Repellat saepe officiis id assumenda beatae voluptatem dignissimos labore, doloribus vel quis asperiores tempora aliquam, reprehenderit ducimus quas ut non, incidunt magni tenetur quae molestias eligendi sunt excepturi similique! Harum!</span>
-				<span>Ratione corporis culpa similique earum voluptas neque, vitae sequi repudiandae doloremque eius dolore ea, molestiae fugit consequuntur excepturi, magni quia nobis totam voluptatem. Nisi, magni nulla numquam laborum qui. Eaque.</span>
-				<span>Amet eveniet, voluptatum culpa! Nihil odio harum perferendis distinctio, ex nam doloremque amet quam dolor impedit magni similique fuga, fugit eos non possimus dolore. Autem, alias praesentium ullam qui odio!</span>
-				<span>Sint eveniet sit, explicabo iure corporis veniam molestiae dolore, nisi minus sequi temporibus repudiandae impedit odit dolor maiores repellendus, ipsa pariatur consequatur aliquid, neque perspiciatis ratione deserunt itaque. Doloremque, amet.</span></p>
-			<p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut molestias, repellendus qui esse molestiae ipsa error, incidunt harum tenetur est accusantium, natus saepe facere. Deleniti voluptates illo, consequuntur earum impedit.</span>
-				<span>Deserunt voluptas esse harum alias officiis, velit numquam laborum, nihil excepturi rerum quidem nostrum delectus quaerat enim quas cumque ad sunt dolorem sed. Officia ad soluta aliquam, ab ullam cumque?</span>
-				<span>Perspiciatis, aliquam! Repudiandae accusantium laudantium cupiditate reprehenderit nisi perferendis aperiam, consequatur non sit possimus alias maxime explicabo vel soluta delectus, dolore libero inventore. Voluptas non placeat, eum nihil fugiat ab!</span>
-				<span>Distinctio voluptatum vel dolor tempora accusantium, est odio iure eligendi nihil repellendus dolorem, numquam fuga excepturi veniam! Ipsam ullam cum quod facilis eaque fugit at modi, sit a minima, nostrum.</span>
-				<span>Atque nulla ut asperiores dignissimos, error deleniti doloribus voluptatem, autem voluptate iure. Tempore, qui, eum sit, necessitatibus quod a aliquid nemo debitis aspernatur reiciendis, fugit dicta ipsam ex eveniet non?</span>
-				<span>Incidunt fugiat esse iure, omnis sit, placeat? Aperiam impedit dolorum omnis quos dolore, ipsa velit, exercitationem enim nesciunt ex recusandae doloribus facere. Similique magnam facere dolore cum ipsum, id dolorum.</span>
-				<span>Libero ut ipsam repudiandae blanditiis officiis maxime, obcaecati hic eligendi asperiores sint ratione magnam vel doloremque architecto harum, accusantium assumenda! Sint officiis accusamus, consequuntur aut incidunt quasi voluptate iusto labore.</span>
-				<span>Itaque modi inventore aliquam, quaerat impedit dolore ea vitae, at vel molestiae temporibus voluptas fugiat aspernatur cum pariatur asperiores officia, deserunt tempora consectetur! Perspiciatis placeat fugit, obcaecati delectus atque pariatur!</span>
-				<span>Voluptas quia id aliquid quisquam ea dolores inventore sit, explicabo expedita neque laboriosam blanditiis consequuntur temporibus quae facere pariatur eligendi architecto qui iusto maxime corporis unde nesciunt amet. Quis, dolores.</span>
-				<span>Quo rem nobis sit excepturi, temporibus necessitatibus dolorem! Pariatur fugiat similique sequi. Dolore pariatur cum enim nam, aut officia molestiae iste voluptates necessitatibus, beatae itaque. Vero eum culpa saepe numquam.</span></p>
-		</div>
-	</div>
+    <section class="box">
+        <!--<h2 class="box-title">Test</h2>
+        <div id="mocha" class="box-content">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet inventore sed autem odit et. Nemo ullam quod tenetur impedit ea quos harum, et a, doloribus iure quaerat cupiditate dolorum velit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, dolorum voluptatum, quo necessitatibus facere distinctio. Odio iure asperiores, perferendis modi veritatis accusantium quaerat dolor repellat quasi quod sit, maxime, veniam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, dolores. Dicta aliquid, ipsam rem ad quisquam illum, itaque harum quaerat delectus, nihil repellat iure cum distinctio, natus voluptatem quos odio!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab atque qui, labore reprehenderit quas ipsa voluptatem officiis quos quis? Tempore aliquid corporis atque nemo, quod perspiciatis amet, reprehenderit minus ipsam?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur et, rem velit similique vitae blanditiis fugit placeat esse dolorem iure. Porro voluptatum deleniti at, culpa maiores eaque velit quo nobis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore possimus, adipisci corrupti doloremque, animi ea dolorem voluptatem esse ab delectus aliquid corporis voluptates nemo! Quam quae voluptates nesciunt! Facere, consectetur.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore quo beatae dolorum, nihil facilis distinctio repudiandae, dolores similique alias obcaecati excepturi ducimus voluptas et inventore sunt sed enim. Fugit, est.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum impedit, similique ab. Odit dignissimos qui, ex exercitationem sint quis at reiciendis corporis nesciunt iure similique, iste obcaecati nemo? Voluptates, voluptas.</p
+
+					talagent wnats to use the "Local Items" key chain
+        </div>-->
+      </section>
+
+      <footer class="panel-footer">
+        <!--<p>with <span class="heart">❤</span> by <a href="https://getmango.com/en" target="_blank">Mango</a></p>-->
+      </footer>
+	</main>
+
+	<script src="lib/slideout.min.js"></script>
+	<script>
+      var slideout = new Slideout({
+        'panel': document.getElementById('panel'),
+        'menu': document.getElementById('menu'),
+        'padding': 256,
+        'tolerance': 70
+      });
+
+			slideout.on('open', function() {
+				document.querySelector('.side-menu-toggle').classList.add("is-active");
+			});
+
+			slideout.on('close', function() {
+				document.querySelector('.side-menu-toggle').classList.remove("is-active");
+			});
+
+			 slideout.on('translatestart', function() {
+				console.log('Start');
+			});
+
+			slideout.on('translate', function(translated) {
+				console.log('Translate: ' + translated); // 120 in px
+			});
+
+			slideout.on('translateend', function() {
+				console.log('End');
+			});
+
+      // Toggle button
+      document.querySelector('.side-menu-toggle').addEventListener('click', function() {
+        var isOpen = slideout.isOpen();
+        if (isOpen) {
+          document.querySelector('.side-menu-toggle').classList.remove("is-active");
+        } else {
+          document.querySelector('.side-menu-toggle').classList.add("is-active");
+        }
+        slideout.toggle();
+      });
+    </script>
+
 </body>
+
 </html>

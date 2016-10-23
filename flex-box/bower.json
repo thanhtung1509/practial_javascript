@@ -1,0 +1,23 @@
+{
+  "name": "flex-box",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "thanhtung1509 <thanhtung1509@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/thanhtung1509/practial_javascript",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "slideout.js": "https://github.com/mango/slideout.git#~0.1.12",
+    "lodash": "~4.16.4",
+    "css-hamburgers": "~0.5.0"
+  }
+}
