@@ -15,7 +15,7 @@ interface IPerson {
 const person: IPerson = {
   personname : "tung pham",
   address1: "bien hoa dong nai",
-  address2: "hai phong"
+  address2: "hai"
 };
 
 //const { personname, address1, address2 } = person;
@@ -24,7 +24,7 @@ const company = {
   director: person,
   category: {
     industry: {
-      name: "software"
+      name: "tung"
     }
   }
 }
@@ -36,5 +36,3 @@ function printSeparate({director: {personname: directorname}, category: { indust
 }
 
 const expotObj = printSeparate(company);
-console.log(JSON.stringify(expotObj));
-console.log("Pham Thnht");
