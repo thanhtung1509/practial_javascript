@@ -9,7 +9,9 @@
     "gulp-connect": "^5.0.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-ruby-sass": "^2.1.0",
-    "gulp-sequence": "^0.4.6"
+    "gulp-sequence": "^0.4.6",
+    "gulp-typescript": "^3.0.2",
+    "merge2": "^1.0.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
