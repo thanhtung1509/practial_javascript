@@ -1,0 +1,13 @@
+body {
+  background-color: white;
+}
+
+.section1 {
+  color: blue;
+  font-size: 30px;
+}
+
+.section2 {
+  font-size: 100px;
+  color: aqua;
+}

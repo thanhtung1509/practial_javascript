@@ -1,0 +1,15 @@
+.box {
+  color: white;
+  height: 100%;
+}
+@media (min-width: 20em) and (max-width: 46.24em) {
+  .box {
+    background: red;
+    color: black;
+  }
+}
+@media (min-width: 46.25em) {
+  .box {
+    background: green;
+  }
+}

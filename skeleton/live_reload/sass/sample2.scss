@@ -1,0 +1,16 @@
+@import 'partials/mq';
+    
+.box {
+    color: white;
+    height: 100%;
+    
+    @include mq($from: mobile, $until: tablet) {
+        background: red;
+        color: black;
+    }
+    
+    @include mq($from:tablet) {
+        background: green;
+        
+    }
+}

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)http://www.webdevbreak.com/episodes/page-visibility-api/example -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Page Visibility API Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 1em;
+    }
+
+    body > a {
+      background-color: #333;
+      color: white;
+      display: inline-block;
+      padding: 1em;
+      text-decoration: none;
+    }
+
+    body > a:hover {
+      background-color: orange;
+    }
+
+    h1 {
+      font-size: 1.5em;
+      font-weight: 300;
+      letter-spacing: 1px;
+      margin-top: 2em;
+      text-transform: uppercase;
+    }
+
+  </style>
+</head>
+<body cz-shortcut-listen="true">
+
+
+<style>
+
+    body {
+        text-align: center;
+    }
+
+    h2 {
+        margin-top: 2.5em;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-size: 1.5em;
+    }
+
+    .dial {
+        margin: 2em auto;
+        width: 18em;
+        height: 9em;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .reading-display {
+        position: absolute;
+        top: 0.625em;
+        left: 0;
+        right: 0;
+        font-size: 5.5em;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .message {
+        z-index: 20;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        font-size: 2em;
+        font-weight: bold;
+        text-transform: uppercase;
+        vertical-align: middle;
+        line-height: 12em;
+    }
+
+    .reading-counter {
+        z-index: 10;
+        top: 0;
+        right: 0;
+        position: absolute;
+        font-size: 1.5em;
+        background-color: #333;
+        color: white;
+        border-radius: 50%;
+        width: 2.5em;
+        height: 2.5em;
+        line-height: 2.5em;
+    }
+
+    .face {
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        box-sizing: border-box;
+        width: 18em;
+        height: 18em;
+        border: 3em solid;
+        border-color: #e9e9e9 transparent transparent #e9e9e9;
+        border-radius: 50%;
+    }
+
+    .green-line, .yellow-line, .red-line {
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        content: ' ';
+        border: 2em solid;
+        border-radius: 50%;
+        width: 17em;
+        height: 17em;
+        top: -2.5em;
+        left: -2.5em;
+    }
+
+    .green-line {
+        border-color: transparent transparent #2bd681 #2bd681;
+        -webkit-transform: rotate(15deg);
+        -ms-transform: rotate(15deg);
+        transform: rotate(15deg);
+    }
+
+    .yellow-line {
+        border-color: #ffe833 transparent transparent transparent;
+        -webkit-transform: rotate(15deg);
+        -ms-transform: rotate(15deg);
+        transform: rotate(15deg);
+    }
+
+    .red-line {
+        border-color: #ff5633 transparent transparent transparent;
+        -webkit-transform: rotate(60deg);
+        -ms-transform: rotate(60deg);
+        transform: rotate(60deg);
+    }
+
+    .needle {
+        box-sizing: border-box;
+        position: absolute;
+        border-radius: 50%;
+        border: 3em solid;
+        border-color: #e9e9e9 transparent transparent #e9e9e9;
+        width: 18em;
+        height: 18em;
+        top: -3em;
+        left: -3em;
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+        -webkit-transition: all 0.8s ease-out;
+        transition: all 0.9s ease-out;
+    }
+</style>
+
+<a href="http://www.webdevbreak.com/episodes/page-visibility-api">← Return to tutorial</a>
+
+<h1>Page Visibility API Example</h1>
+
+<h2>Dashboard</h2>
+
+<div class="message" data-message="" style="display: none;"></div>
+<div class="dial">
+    <div class="reading-counter" data-reading-counter="">40</div>
+    <div class="face">
+        <div class="green-line"></div>
+        <div class="yellow-line"></div>
+        <div class="red-line"></div>
+        <div class="needle" data-needle="" style="transform: rotate(41.4deg);"></div>
+    </div>
+    <div class="reading-display" data-reading-display="">23</div>
+</div>
+
+<!-- Include visibly.js library https://github.com/addyosmani/visibly.js -->
+<script async="" src="./Page Visibility API Example_files/analytics.js"></script><script src="./Page Visibility API Example_files/visibly-2014.05.27-6a31552d0bd4b9c9b19140ae1f986b4d.js"></script>
+<script>
+
+    if (console.log) {
+        console.log("Page loading", "visibly.visibilityState()", visibly.visibilityState(),
+            "visibly.hidden()", visibly.hidden());
+    }
+
+    // Namespace
+    var webDevBreak = {};
+
+    // A monitoring service that we query for stats to show on our dashboard.
+    webDevBreak.monitor = (function() {
+        return {
+            getReading: function getReading() {
+                // Imagine this is a more expensive operation than generating
+                // a random number. For example, pretend this is using an ajax
+                // request to fetch data over a network.
+                var fakeReading = Math.floor(Math.random() * 101);
+                return fakeReading;
+            }
+        };
+    })();
+
+
+    webDevBreak.utils = (function() {
+        // element.style.transform not guaranteed, may require browser prefix.
+        var candidates = ["transform", "msTransform", "webkitTransform", "mozTransform", "oTransform"];
+        return {
+            getTransformPropName: function getTransformPropName() {
+                for (var i = 0; i < candidates.length; i++) {
+                    var candidate = candidates[i];
+                    if (typeof document.body.style[candidate] != "undefined") {
+                        return candidate;
+                    }
+                }
+                return null;
+            }
+        };
+    })();
+
+
+    webDevBreak.dashboard = (function() {
+
+        function createMessageDisplay() {
+            var element = document.querySelector("[data-message]");
+            var messageLingerDurationInMillis = 1000;
+            var timeoutId;
+            return {
+                update: function update(message) {
+                    element.textContent = message;
+                    element.style.display = "block";
+                },
+                clear: function clear() {
+                    // Don't clear messageDisplay message immediately, want user to be aware
+                    // that the dashboard conserves resources when not visible.
+                    clearTimeout(timeoutId);
+                    timeoutId = setTimeout(function() {
+                        element.style.display = "none";
+                        element.textContent = "";
+                    }, messageLingerDurationInMillis);
+                }
+            };
+        };
+
+        function createReadingDisplay() {
+            var element = document.querySelector("[data-reading-display]");
+            return {
+                update: function update(reading) {
+                    element.textContent = reading;
+                }
+            };
+        };
+
+        function createNeedle() {
+            var element = document.querySelector("[data-needle]");
+            var transformPropName = webDevBreak.utils.getTransformPropName();
+            return {
+                update: function update(reading) {
+                    if (transformPropName) {
+                        var rotationInDegrees = (reading / 100) * 180;
+                        element.style[transformPropName] = "rotate(" + rotationInDegrees + "deg)";
+                    }
+                }
+            };
+        };
+
+        function createReadingCounter() {
+            var element = document.querySelector("[data-reading-counter]");
+            var count = 0;
+            return {
+                increment: function increment() {
+                    count++;
+                    element.textContent = count;
+                }
+            };
+        };
+
+        function createActivityManager() {
+
+            var messageDisplay = createMessageDisplay();
+            var readingDisplay = createReadingDisplay();
+            var needle = createNeedle();
+            var readingCounter = createReadingCounter();
+            var refreshIntervalInMillis = 1000;
+            var intervalId;
+
+            function refreshReading() {
+                var reading = webDevBreak.monitor.getReading();
+                readingDisplay.update(reading);
+                needle.update(reading);
+                readingCounter.increment();
+            };
+
+            function sleep() {
+                clearInterval(intervalId);
+                messageDisplay.update("Sleeping");
+            };
+
+            function wake() {
+                clearInterval(intervalId);
+                intervalId = setInterval(refreshReading, refreshIntervalInMillis);
+                messageDisplay.update("Waking up");
+                messageDisplay.clear();
+            };
+
+            function handleVisibilityChange(state) {
+                if (console.log) {
+                    console.log("state", state,
+                            "visibly.visibilityState()", visibly.visibilityState(),
+                            "visibly.hidden()", visibly.hidden());
+                }
+                if (visibly.hidden()) {
+                    sleep();
+                } else {
+                    wake();
+                }
+            };
+
+            return {
+                init: function init() {
+                    visibly.visibilitychange(handleVisibilityChange);
+                    if (!visibly.hidden()) {
+                        wake();
+                    }
+                }
+            };
+        };
+
+        function setup() {
+            createActivityManager().init();
+        };
+
+        return {
+            init: function setupWhenDocumentReady() {
+                document.addEventListener("DOMContentLoaded", setup);
+            }
+        };
+    })();
+
+    webDevBreak.dashboard.init();
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-25622294-9', 'webdevbreak.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+</body></html>

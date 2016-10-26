@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="angular.js"></script>
+</head>
+
+<body ng-app="myApp">
+    <div ng-controller="myCtrl">
+        <!-- {{name}} -->
+    </div>
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.controller('myCtrl', function ($scope, $q, $timeout) {
+            var arrayToSync = [1, 2, 3];
+            
+            function callSingle(name, willSucceed, currentIndex) {
+                var deferred = $q.defer();
+                $timeout(function () {
+                    if (willSucceed) {
+                        console.log("resolve " + name);
+                        deferred.resolve(name);
+                    } else {
+                        deferred.reject(currentIndex);
+                    }
+                }, 2000);
+                return deferred.promise;
+            }
+
+            function _changeDriverStatusAsync(index, currentIndex) {
+                var willSucceed = true;
+                if (index == 2) {
+                    willSucceed = false;
+                } 
+                console.log("call " + index);
+                return callSingle('Change' + index, willSucceed, currentIndex);
+            }
+
+            function _changeDriverStatusSeries(pendingStatus) {
+                //var arr = [];
+                return pendingStatus.reduce(function (chain, current, currentIndex) {
+                    //console.log("currentIndex : " + currentIndex)
+                    return chain.then(function () {
+                        //arr.push(rs);
+                        return _changeDriverStatusAsync(current, currentIndex);
+                    });
+                }, $q.when());
+            }
+
+        
+            _changeDriverStatusSeries(arrayToSync).then(function(s) {
+                console.log('success : ' + s);
+            }, function(e) {
+                arrayToSync= arrayToSync.slice(1, arrayToSync.length );
+                console.log(JSON.stringify(arrayToSync));
+                console.log('error : ' + e);
+            });
+            //$scope.name = "TUNG";
+        });
+    </script>
+
+</body>
+
+</html>
